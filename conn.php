@@ -17,13 +17,12 @@ class conexion
     ];
 
 
-    public function conectar()
-    {
-        try {
-            $pdo = new PDO('mysql');
+    public function conectar(){
+        try{
+            $pdo = new PDO("mysql:host={$this->host};dbname={$this->db};charset={$this->charset};port={$this->port}",$this->user,$this->pass,$this->options);
             return $pdo;
-        } catch (PDOEXCEPTION $exp) {
-            echo ("HUBO UN ERROR EN LA CONEXION");
+        }catch(PDOException $exp){
+            echo("HUBO UN ERROR EN LA CONEXION".$exp->getMessage());
         }
     }
 }
